@@ -1,0 +1,197 @@
+/* 
+
+Project Group: 5
+
+Project Group Members: Vaibhavi Arjunwadkar (1001826818)
+					   Sashidhar Boyapati (1002087319)
+					   Hema Sai Desai (1002029973)
+					   Hemanth Reddy Gillela (1002033611)
+					   Smrithi Gujjula (1002073701)  
+                       
+*/
+
+.container .row .sidebar .home-icon {
+    margin-left: 5px;
+    height: 80px;
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.row {
+    flex: 1;
+    display: flex;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    left: 0;
+    height: 90vh;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+    border-width:0.2px;
+    border-style:solid;
+    border-color:rgb(252, 213, 213);
+}
+.sidebar .logo img{
+    display: block;
+    height: 107px;
+    margin: 0 auto;
+}
+.sidebar ul li a{
+    display: block;
+    padding: 13px 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #ffcece;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    position: relative;
+}
+.sidebar ul li a:hover {
+    background-color: #c0bfc2;
+    color: #000000;
+}
+.course-container{
+    display: flex;
+}
+.content {
+    flex: 3;
+    padding: 77px 111px;
+    color: black;
+    align-items: flex-end;
+}
+.discussion-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.discussion-header {
+    background-color: #0074D9;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    max-width: 50%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.message.instructor {
+    background-color: blue;
+    align-self: flex-start;
+    color: white;
+}
+
+.message.student {
+    background-color: white;
+    align-self: flex-end;
+    color: #291749;
+    border-width: 2px;
+    border: 2px solid #0306c7; 
+    border-radius: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.send-button {
+    background-color: #0074D9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.create-topic-button {
+    background-color: #0074D9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    float: right;
+    cursor: pointer;
+}
+.image-container .user-icon {
+    max-width: 50%;
+    height: auto;
+}
+/* CSS for the discussion header */
+.discussion-header {
+    background-color: #0074D9;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#discussion-topic {
+    font-size: 18px;
+    color: white;
+    background-color: #0074D9;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#discussion-topic option {
+    font-size: 18px; 
+    background-color: #0074D9;
+    color: white;
+}
+
+#discussion-topic::-ms-expand {
+    display: none;
+}
+
+#discussion-topic::-webkit-scrollbar {
+    width: 12px;
+}
+
+#discussion-topic::-webkit-scrollbar-thumb {
+    background-color: #0056a0;
+}
+
+
+.footer {
+    background-color: #291749;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

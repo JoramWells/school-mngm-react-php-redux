@@ -1,0 +1,161 @@
+/* 
+
+Project Group: 5
+
+Project Group Members: Vaibhavi Arjunwadkar (1001826818)
+					   Sashidhar Boyapati (1002087319)
+					   Hema Sai Desai (1002029973)
+					   Hemanth Reddy Gillela (1002033611)
+					   Smrithi Gujjula (1002073701)  
+                       
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #291749; */
+    color: #fff;
+    padding-top: 0.1px;
+    /* Space for the fixed header */
+}
+.container .row .sidebar .home-icon {
+    margin-left: 5px;
+    height: 80px;
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.row {
+    flex: 1;
+    display: flex;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+    top: 0;
+    left: 0;
+    height: 90vh;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+    border-width:0.2px;
+    border-style:solid;
+    border-color:rgb(252, 213, 213);
+}
+.sidebar .logo img{
+    display: block;
+    height: 107px;
+    margin: 0 auto;
+}
+.sidebar ul li a{
+    display: block;
+    padding: 13px 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #ffcece;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    position: relative;
+}
+.content {
+    flex: 3;
+    padding: 18px;
+    color: black;
+}
+.c-buttons{
+    background-color: #221864;
+    color: #ffcece;
+    width: fit-content;
+    padding: 5px;
+    height: 31px;
+    font-size: 16px;
+    border-radius: 4px;
+    float: left;
+    margin: 10px;
+    align-items: center; 
+   }
+.instructors-items{
+    clear: left; 
+    position: relative;
+
+}
+
+.dropdown {
+    display: inline-block;
+    width: 556px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-left: 9px;
+}
+
+.dropdown-header {
+    background-color: #291749;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    padding: 9px 29px;
+
+}
+
+.dropdown-body {
+    display: block; /* Display the dropdown body at all times */
+    background-color: #fff;
+    border: 1px solid #291749;
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding: 9px 29px;
+    color: #291749;
+    border-bottom: 1px solid #291749;
+}
+
+.delete-icon {
+    color: #291749;
+    cursor: pointer;
+}
+.chevron-icon {
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+}
+.chevron-icon i {
+    font-size: 16px;
+}
+.file-pdf i{
+    font-size: 16px;
+}
+/* Style the trash icon from Font Awesome */
+.delete-icon i {
+    font-size: 16px;
+}
+
+/* Hover effect for delete icon */
+.delete-icon:hover {
+    color: red;
+}
+.footer {
+    background-color: #291749;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    padding: 10px 0;
+    display: block;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

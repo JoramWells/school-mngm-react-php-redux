@@ -1,0 +1,246 @@
+/* 
+
+Project Group: 5
+
+Project Group Members: Vaibhavi Arjunwadkar (1001826818)
+					   Sashidhar Boyapati (1002087319)
+					   Hema Sai Desai (1002029973)
+					   Hemanth Reddy Gillela (1002033611)
+					   Smrithi Gujjula (1002073701)  
+                       
+*/
+
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #291749; */
+    color: #fff;
+    /* padding-top: 60px; */
+    background-color: "white";
+    /* Space for the fixed header */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #291749;
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width:600px) {
+    .header{
+        position: relative;
+        right: 0;
+        left: 0;
+    }
+    
+}
+
+.header .home-icon {
+    margin-left: 30px;
+    height: 40px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.header-nav a {
+    color: #291749;
+    text-decoration: none;
+    margin-left: 50px;
+}
+
+.header-nav a:hover {
+    text-decoration: underline;
+}
+
+.content-container {
+    background-color: #291749;
+    text-align: center;
+    height: 250px;
+    /* max-width: 800px; */
+    margin: 0 auto;
+    padding: 70px 40px 40px 40px;
+}
+
+.content-container h1 {
+    font-size: 50px !important;
+}
+
+.course-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #483d8b;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.course-button:hover {
+    background-color: #291749;
+}
+
+.fixed-footer {
+    background-color: #291749;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    padding: 10px 0;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    margin-left: 30px;
+    height: 70px;
+}
+
+.social-icons {
+    margin-right: 30px;
+    margin-top: 30px;
+}
+
+.social-icons a img {
+    /* margin-left: 10px; */
+    height: 24px;
+}
+
+.body1-container {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px 20px;
+    background-color: white;
+}
+
+.course-description {
+    flex: 1.5;
+    padding: 20px;
+}
+
+.course-image {
+    flex: 1;
+    text-align: center;
+    /* To align the image to the right side */
+}
+
+.course-image img {
+    max-width: 100%;
+    /* To ensure the image doesn't overflow its container */
+    height: auto;
+}
+
+.body2-container {
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+    background-color: white;
+}
+
+.body2-container h4 {
+    margin: 0px !important;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 20px 40px;
+    background-color: #291749;
+    color: #fff;
+}
+
+.footer-column {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-top: 20px;
+    padding-left: 70px;
+}
+
+.footer-column-logo {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.footer-column a {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+.footer-column input[type="email"] {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 3px;
+}
+
+.footer-column button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #483d8b;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.footer-column button:hover {
+    background-color: #291749;
+}
+
+.fa {
+    padding: 5px;
+    text-align: center;
+    margin: 2px 2px;
+    font-size: 2px;
+    /* width: 10px;   */
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+    width: 10px;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+    width: 15px;
+}
+
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+    width: 15px;
+}
