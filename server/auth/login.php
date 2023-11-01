@@ -18,8 +18,8 @@ if(mysqli_connect_error()){
 
     // select user where username
     $sql1 = "SELECT *  FROM users WHERE email='$email'";
+    
 
-    // $sql = "INSERT INTO users (userName, email, password) VALUES ('$userName','$email','$userPassword')";
     $res = mysqli_query($conn, $sql1);
 
     if($res){
@@ -34,10 +34,9 @@ if(mysqli_connect_error()){
             }else{
                 echo $jsonData;
             }
-
-            // echo $row['email'];
-
         }
+    }else{
+        echo "No user";
     }
 
     // while($rowitem = mysqli_fetch_array($res)){

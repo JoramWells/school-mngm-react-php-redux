@@ -26,6 +26,7 @@ export const addCourse = createAsyncThunk(
     'course/addCourse',
     async (formData) => {
         const response = await axios.post(addCourseURL, formData)
+        console.log(response)
         return response.data
 
     }

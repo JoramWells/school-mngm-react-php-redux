@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import logo from '../imgs/logo.jpeg'
-import { Dropdown, Image, Nav, Navbar} from 'react-bootstrap'
+import { useEffect, useState } from 'react'
+import { Dropdown, Image, Nav, Navbar } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
+import logo from '../imgs/logo.jpeg'
 const NavbarComponent = () => {
 
   const navigate = useNavigate()
@@ -14,13 +14,19 @@ const NavbarComponent = () => {
     return []
   }
 
-  const [user, setUser]= useState(getFromStorage())
+  const [user, setUser]= useState([])
   const logout = () => {
     const data = getFromStorage()
     data.logged = false
     localStorage.setItem('RCUsers', JSON.stringify(data))
     setUser([])
   }
+
+  useEffect(()=>{
+    setUser(getFromStorage())
+    // console.log(user,'yuy')
+
+  },[])
 
   return (
 
@@ -51,7 +57,7 @@ const NavbarComponent = () => {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/about-us">About Us</Nav.Link>
           <Nav.Link href="/contact-us">Contact</Nav.Link>
-          {Object.keys(user).length > 0 && user.logged ? <div style={{
+{user.length > 0 ? <div style={{
             color:"black"
           }}>
             {/* {user.userName} */}
@@ -61,7 +67,7 @@ const NavbarComponent = () => {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item>
-                  {user.userName}
+                  {user[0].userName}
                 </Dropdown.Item>
                 <Dropdown.Item onClick={()=>navigate('/student-account')}>
                   Profile

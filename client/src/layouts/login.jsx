@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 // import '../css/login.css'
-import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser } from '../_features/userSlice'
 
 
 const containerStyles = {
@@ -20,30 +21,32 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [err, setErr] = useState("")
 
-  const [userData, setUserData] = useState({})
-
-
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleLogin = async () => {
-    const url = 'http://localhost/reportcard/server/auth/login.php'
+  const { data } = useSelector(state => state.user)
+
+  const handleLogin = () => {
     const formData = new FormData()
     formData.append('email', email)
     formData.append('password', password)
 
-    await axios.post(url, formData)
-      .then(response => {
-        if(response.status === 200){
-          setUserData(response.data)
-
-        }
-        localStorage.setItem('RCUsers', JSON.stringify(userData))
-        // navigate('/')
-      })
-      .catch(err => alert(err.message))
-      console.log(userData)
+    dispatch(
+      loginUser(formData)
+    )
 
   }
+
+  useEffect(() => {
+    if (data.length > 0) {
+      let inputValues = data
+      // inputValues['logged']=true
+      localStorage.setItem('RCUsers', JSON.stringify(inputValues))
+      navigate('/')
+
+    }
+  }, [data, navigate])
+
 
 
   return (

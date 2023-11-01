@@ -6,6 +6,7 @@ import CoordinatorCreateProgram from './layouts/CoordinatorCreateProgram';
 import ProgramDetail from './layouts/ProgramDetail';
 import StudentDetail from './layouts/StudentDetail';
 import StudentPerformance from './layouts/StudentPerformance';
+import StudentPerformanceDetail from './layouts/StudentPerformanceDetail';
 import About from './layouts/about';
 import Admin from './layouts/admin';
 import Chat from './layouts/chat';
@@ -36,7 +37,9 @@ function App() {
       <Route path='/student' element={<Student />} />
       <Route path='/student-account' element={<StudentAccount />} />
       <Route path='/student-detail/:id?' element={<StudentDetail />} />
-      <Route path='/student-performance/:id?' element={<StudentPerformance />} />
+      <Route path='/student-performance-detail/:id?' element={<StudentPerformanceDetail />} />
+      <Route path='/student-performance' element={<StudentPerformance />} />
+
       <Route path='/add-student-performance' element={<AddStudentPerformance />} />
 
 

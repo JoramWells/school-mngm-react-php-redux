@@ -1,12 +1,13 @@
-import axios from 'axios'
 import moment from 'moment'
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import Select from 'react-select'
-import { fetchUsers } from '../_features/userSlice'
+import { fetchCourse } from '../_features/courseSlice'
+import { addPerformance } from '../_features/performanceSlice'
 import NavbarComponent from '../components/Navbar'
+import Selector from '../components/Selector'
 import SideNavBar from "../components/Sidebar"
 const containerStyles = {
     backgroundColor: '#fff',
@@ -17,73 +18,45 @@ const containerStyles = {
 }
 
 const AddStudentPerformance = () => {
-    const [courseName, setCourseName] = useState('')
     const [description, setDescription] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [programs, setPrograms] = useState('')
 
 
     const navigate = useNavigate('')
 
-    const students = useSelector((state)=>state.user.data)
-    const status = useSelector((state)=>state.user.status)
+    const [selectedOption, setSelectedOption] = useState(
+        {value:'English', label:'English'}
+    );
 
+    const [searchParams] = useSearchParams()
+    const studentID = searchParams.get('id')
 
-    const getPrograms = async () => {
-        const url = 'http://localhost/reportcard/server/programs/getprogram.php'
+    const [selectedStudent, setSelectedStudent] = useState(
+        {value:'', label:''}
+    );
 
-        await axios.get(url).then(res => {
-            setLoading(true)
-            if (res.data) {
-                setLoading(false)
-                return(
-                    setPrograms(res.data)
-                )
-            }
-        })
-            .catch(err => {
-                console.log(err)
-                setLoading(false)
-                setError(true)
-            })
-    }
-
-    const handleRegister = async () => {
-
-        const url = 'http://localhost/reportcard/server/students/createStudentPerformance.php'
+    const handleRegister = () => {
         const formData = new FormData();
-        formData.append('courseName', courseName)
+        formData.append('studentID', selectedStudent.value)
+        // formData.append('studentName', selectedStudent.label)
+        formData.append('courseName', selectedOption.value)
         formData.append('description', description)
         formData.append('createdAt', moment(new Date()).format('YYYY-MM-DD HH:mm:ss'))
-        await axios.post(url, formData).then(response => {
-            console.log(response)
-
-        }).catch(err => alert(err.message))
-        //   const credentials = {
-        //     courseName,
-        //     description,
-        //   }
-        //   localStorage.setItem('RCUsers', JSON.stringify(credentials))
-        //   return navigate('/')
+       dispatch(addPerformance(formData) )
+        // navigate('/student-performance')
     }
-    const [selectedOption, setSelectedOption] = useState(null);
+
+    const { data } = useSelector(state => state.courses)
 
 
 
-const dispatch = useDispatch()
-      useEffect(()=>{
-        getPrograms();
-        if(status === 'idle'){
-            dispatch(fetchUsers())
-        }
-      },[dispatch, status])
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchCourse())
+    }, [dispatch])
 
-      const options = students.map(student=>{
-        return{value:student.userName, label:student.userName}
-      })
-
-
+    const options = data.map(item => {
+        return { value: item.courseName, label: item.courseName }
+    })
 
 
     return (
@@ -103,15 +76,26 @@ const dispatch = useDispatch()
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
+
+
                     <Col xs={4} lg={4} md={6}>
                         <Form style={containerStyles} >
+                            {/* select student name */}
+                            <Form.Group className='mb-2 mt-2'>
+                                <Form.Label>Select Student Name</Form.Label>
+                                <Selector
+                                selectedStudent={selectedStudent}
+                                setSelectedStudent={setSelectedStudent}
+                                />
+                            </Form.Group>
 
+                            {/* select course name */}
                             <Form.Group className='mb-2 mt-2'>
                                 <Form.Label>Select Course Name</Form.Label>
                                 <Select
-                                defaultValue={selectedOption}
-                                onChange={setSelectedOption}
-                                options={options}
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={options}
                                 />
                             </Form.Group>
                             <Form.Group className='mb-2'>
@@ -132,7 +116,7 @@ const dispatch = useDispatch()
                             }}
                                 onClick={() => handleRegister()}
                             >
-                                Sign Up
+                               Add
                             </Button>
                         </Form>
                     </Col>

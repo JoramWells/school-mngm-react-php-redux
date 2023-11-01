@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Button, Col, Container, Row, Table } from "react-bootstrap"
 // import { AiOutlineEllipsis } from 'react-icons/fa'
 import { useDispatch, useSelector } from "react-redux"
@@ -11,7 +11,6 @@ import SideNavBar from "../components/Sidebar"
 
 const Coordinator = () => {
 
-    const [programs, setPrograms] = useState([])
 
     const listData = [
         {
@@ -22,7 +21,7 @@ const Coordinator = () => {
         {
             id: 3,
             text: 'Performance',
-            link: '/create-program'
+            link: '/student-performance'
 
         },
         {

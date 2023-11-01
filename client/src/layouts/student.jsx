@@ -1,64 +1,34 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { Button, Col, Container, Form, Row, Table } from "react-bootstrap"
+import { Col, Container, Form, Row, Table } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { fetchUsers } from "../_features/userSlice"
 import NavbarComponent from "../components/Navbar"
 import SideNavBar from "../components/Sidebar"
 
 
 const Coordinator = () => {
-
-    const [programs, setPrograms] = useState([])
-
-    const listData = [
-        {
-            id: 1,
-            text: 'Create Program',
-            link: '/create-program'
-        },
-        {
-            id: 3,
-            text: 'Performance',
-            link: '/create-program'
-
-        },
-        {
-            id: 4,
-            text: 'Enquiries',
-            link: '/create-program'
-
-        }
-    ]
-
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const dispatch = useDispatch()
 
-    const getPrograms = async () => {
-        const url = 'http://localhost/reportcard/server/students/viewAllStudents.php'
+    const [searchQuery, setSearchQuery] = useState('')
 
-        await axios.get(url).then(res => {
-            setLoading(true)
-            if (res.data) {
-                setPrograms(res.data)
-                setLoading(false)
-            }
+    const { loading, data, error } = useSelector(state => state.user)
+    const [datam, setDatam] = useState(data)
 
 
 
+    const filteredData = (str) => {
+        const results = data.filter(item =>
+            item.userName.toLowerCase().includes(str.toLowerCase()))
+            setDatam(results)
 
-        })
-            .catch(err => {
-                console.log(err)
-                setLoading(false)
-                setError(true)
-            })
     }
 
     useEffect(() => {
-        getPrograms()
-        console.log(programs, 'xcd')
-    }, [])
+        dispatch(fetchUsers())
+        // setDatam(data)
+    }, [dispatch])
 
     return (
         <>
@@ -89,12 +59,14 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
 
                         <Col>
                             <Form.Group>
-                                <Form.Control type='text' placeholder="Search student name" />
+                                <Form.Control
+                                type='text' 
+                                placeholder="Search student name"
+                                // value={searchQuery}
+                                onChange={e=>filteredData(e.target.value)}
+                                />
 
                             </Form.Group>
-                        </Col>
-                        <Col>
-                            <Button>Search</Button>
                         </Col>
                     </Row>
                     <Row className="mt-4">
@@ -110,7 +82,7 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
                                 </tr>
                             </thead>
                             <tbody>
-                                {loading ? (<div>loading...</div>) ? error : (<div>error</div>) : programs.map(program => (
+                                {loading ? (<div>loading...</div>) ? error : (<div>error</div>) : datam.map(program => (
                                     <tr key={program.id}>
 
                                         <td>{program.id}</td>

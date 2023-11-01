@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 // import '../css/login.css'
-import axios from 'axios'
 import moment from 'moment/moment'
 import { useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import Select from 'react-select'
+import { registerUser2 } from '../_features/userSlice'
 
 const containerStyles = {
   backgroundColor: '#fff',
@@ -14,29 +16,38 @@ const containerStyles = {
   // height: '450px'
 }
 
+const options = [
+  { value: 'Admin', label: 'Admin' },
+  { value: 'Coordinator', label: 'Coordinator' },
+  { value: 'Instructor', label: 'Instructor' },
+  { value: 'Student', label: 'Student' },
+  { value: 'qa', label: 'qa' },
+
+
+
+]
+
 const Register = () => {
   const [userName, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState({value:'Admin',lavel:'Admin'})
 
 
   const navigate = useNavigate('')
+  const dispatch = useDispatch()
 
-  const handleRegister = async () => {
+  const handleRegister = () => {
 
-    const url = 'http://localhost/reportcard/server/auth/register.php'
     const formData = new FormData();
     formData.append('userName', userName)
     formData.append('email', email)
     formData.append('userPassword', password)
     formData.append('createdAt', moment(new Date()).format('YYYY-MM-DD HH:mm:ss'))
-    formData.append('role', role)
-    await axios.post(url, formData).then(response=>{
-      console.log(response)
+    formData.append('role', role.value)
+    dispatch(registerUser2(formData))
 
-    }).catch(err=>alert(err.message))
     const credentials = {
       userName,
       email,
@@ -68,7 +79,7 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
         alignItems: "center",
         height: "100vh",
         backgroundColor: "#291749",
-        marginTop:'2rem'
+        marginTop: '2rem'
       }}>
         <Row xs lg={12} style={{
           width: "100%",
@@ -83,10 +94,10 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
                 textAlign: "center"
               }}>
                 <h2 style={{
-                  margin:0
+                  margin: 0
                 }}>Sign Up</h2>
                 <h4 style={{
-                  margin:0
+                  margin: 0
                 }}>Create a New Account!!</h4>
               </div>
               <div style={{
@@ -118,21 +129,13 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
               {/* choose role */}
               <Form.Group className='mb-2 mt-2'>
                 <Form.Label>Select Role</Form.Label>
-                <Form.Select name='role' id='role'
-                value={role}
-                onChange={e=>{setRole(e.target.value)
-                  console.log(role)
-                }}
-                >
-                  <option value={'Admin'}>Admin</option>
-                  <option value={'Coordinator'}>Coordinator</option>
-                  <option value={'Instructor'}>Instructor</option>
-                  <option value={'Student'}>Student</option>
-                  <option value={'qa'}>QA-Officer</option>
-
-
-
-                </Form.Select>
+                <Select
+                  defaultValue={role}
+                  onChange={setRole}
+                  options={options}
+                  name='role'
+                  id='role'
+                />
               </Form.Group>
 
 

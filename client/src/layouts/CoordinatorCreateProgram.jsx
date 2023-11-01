@@ -17,14 +17,15 @@ const containerStyles = {
 const CoordinatorCreateProgram = () => {
     const [courseName, setCourseName] = useState('')
     const [description, setDescription] = useState('')
-
+    const [selectedFile, setSelectedFile] = useState('')
 
     const dispatch = useDispatch()
 
-    const handleRegister =  () => {
+    const handleRegister = () => {
         const formData = new FormData();
         formData.append('courseName', courseName)
         formData.append('description', description)
+        formData.append('file', selectedFile)
         formData.append('createdAt', moment(new Date()).format('YYYY-MM-DD HH:mm:ss'))
         dispatch(addCourse(
             formData
@@ -71,21 +72,32 @@ const CoordinatorCreateProgram = () => {
 
                             </Form.Group >
 
+                            <Form.Group>
+                                <Form.Label>Upload file</Form.Label>
+                                <Form.Control
+                                    type='file'
+                                    name='file'
+                                    id='file'
+                                    onChange={e => setSelectedFile(e.target.files[0])}
+                                />
+                            </Form.Group>
+
 
                             <Button size='md' style={{
                                 backgroundColor: "#291749",
                                 border: "none",
                                 width: "100%",
+                                marginTop: "30px"
                             }}
                                 onClick={() => handleRegister()}
                             >
-                                Sign Up
+                                Create Program
                             </Button>
                         </Form>
                     </Col>
                 </Row>
                 {/* Footer code */}
-                <ToastContainer/>
+                <ToastContainer />
 
             </Container>
         </>

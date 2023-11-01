@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
-import SideNavBar from '../components/Sidebar'
-import NavbarComponent from '../components/Navbar'
 import { Button, Col, Container, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
+import NavbarComponent from '../components/Navbar'
+import SideNavBar from '../components/Sidebar'
 const StudentAccount = () => {
+    const navigate = useNavigate()
 
     const getFromStorage = () => {
         const data = localStorage.getItem('RCUsers')
-        if(data !== null){
-          return JSON.parse(data)
+        if (data !== null) {
+            return JSON.parse(data)
         }
         return []
-      }
+    }
 
-  const [user, setUser]= useState(getFromStorage())
+    const [user, setUser] = useState(getFromStorage())
 
     return (
         <div>
@@ -29,20 +31,42 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
 */}
             <SideNavBar />
             <div style={{
-                zIndex:"-50"
+                zIndex: "-50"
             }}>
-            <NavbarComponent/>
+                <NavbarComponent />
             </div>
             <Container fluid style={{
                 padding: "20px",
 
             }}>
+
+                <Row
+                    style={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginTop: "5rem"
+                    }}
+                >
+                    {getFromStorage().length && getFromStorage()[0].role ==='Student'&&
+
+                        <Col lg={4}>
+                            <Button onClick={() => navigate({
+                                pathname: '/student-performance',
+                                search: '?from=student'
+                            })}>
+                                My Performance
+                            </Button>
+                        </Col>
+                    }
+
+                </Row>
                 <Row style={{
                     width: "100%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    marginTop:"5rem"
                 }}>
                     <Col lg={4} className='m-2' style={{
                         height: "250px",
@@ -56,13 +80,14 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
                             <ListGroupItem style={{
                                 backgroundColor: "#291749",
                                 color: "white",
-                                textAlign:"center",
-                                textTransform:"uppercase"
+                                textAlign: "center",
+                                textTransform: "uppercase"
                             }}>Student Profile</ListGroupItem>
-                            <ListGroupItem>Name: {user.userName}</ListGroupItem>
-                            <ListGroupItem>Email: {user.email}</ListGroupItem>
+                            <ListGroupItem>Name: {user[0].userName}</ListGroupItem>
+                            <ListGroupItem>Email: {user[0].email}</ListGroupItem>
                             <ListGroupItem>Phone Number: +1(888)888-8888</ListGroupItem>
                             <ListGroupItem>Address: 7015Nedderman Dr.Arlington, TX 76019</ListGroupItem>
+                            <ListGroupItem>DOB: 09/12/1998</ListGroupItem>
                             <ListGroupItem>Admission Year: 2023</ListGroupItem>
                         </ListGroup>
                     </Col>

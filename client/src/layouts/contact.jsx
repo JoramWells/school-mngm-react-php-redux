@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar'
 // import '../css/login.css'
-import { Button, Container, Form, Row, Col } from 'react-bootstrap'
+import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 
 
 const containerStyles = {
@@ -78,7 +78,7 @@ Project Group Members: Vaibhavi Arjunwadkar (1001826818)
                   }}
                     className='mb-5'
                   >
-                    Login
+                    Contact Us
                   </Button>
 
 

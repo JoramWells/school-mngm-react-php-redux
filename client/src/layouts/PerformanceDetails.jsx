@@ -17,7 +17,7 @@ const containerStyles = {
 
 }
 
-const StudentDetail = () => {
+const PerformanceDetail = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [role, setRole] = useState([])
@@ -204,4 +204,4 @@ const StudentDetail = () => {
     )
 }
 
-export default StudentDetail
+export default PerformanceDetail
